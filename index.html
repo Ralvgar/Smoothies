@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Smoothie Recommendation Engine</title>
-    <link rel="stylesheet" href="CSS/master.css">
-    <script type="text/javascript" src="JS/javascript.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="//unpkg.com/brain.js@1.6.1/browser.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
   </head>
   <body>
 
@@ -26,17 +27,12 @@
         </div>
       </div>
       <div class="row" id="smoothie-list-container">
-
-
-
-            
-
       </div>
       <div class="container-fluid">
         <div class="row">
           <div class="col text-center mb-5">
             <button class="btn btn-info btn-lg mx-2 px-5" type="button" name="button" onclick="objectValue()">Train</button>
-            <button class="btn btn-outline-secondary btn-lg mx-2 px-5" type="button" name="button" onclick="reset()">Reset</button>
+            <button class="btn btn-outline-secondary btn-lg mx-2 px-5" type="button" name="button" onclick="onClickOnReset()">Reset</button>
           </div>
         </div>
       </div>
