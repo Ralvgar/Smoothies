@@ -1,26 +1,20 @@
-/*export class SmoothieNeuralNet {
+export class SmoothieNeuralNet {
     constructor() {
-        this.net = new NeuralNetwork({hiddenLayers: [3], activation: 'sigmoid'});
+        this.net = new brain.NeuralNetwork({ hiddenLayers: [3], activation: 'sigmoid' });
     }
-    train(smoothies) {
+    train(ingredients, smoothies) {
         const trainingData = smoothies.map(smoothie => {
-            const input = {};
-            Object.keys(Ingredient).forEach((key) => {
-                input[key] = smoothie.smoothie.indexOf(key) !== -1 ? 1 : 0;
-            });
+            const input = ingredients.map(ingredient => smoothie.fruits.includes(ingredient) ? 1 : 0)
             return {
                 input,
-                output: {score: smoothie.score}
+                output: { score: smoothie.value / 4 }
             }
         });
         this.net.train(trainingData);
     }
-    predict(smoothie) {
-        const input = {};
-        Object.keys(Ingredient).forEach((key) => {
-            input[key] = smoothie.indexOf(key) !== -1 ? 1 : 0;
-        });
+    predict(ingredients, smoothie) {
+        const input = ingredients.map(ingredient => smoothie.includes(ingredient) ? 1 : 0)
         return this.net.run(input)
     }
-}*/
+}
 

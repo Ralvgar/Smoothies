@@ -1,13 +1,25 @@
+import { SmoothieNeuralNet } from './ai.js';
 
 // global const required for page configuration.
 const numberOfSmoothies = 10;
 const numberOfFruitsInPack = 4;
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍉", "🍇", "🍓", "🥥", "🥒", "🍍"];
+const net = new SmoothieNeuralNet();
 let smoothieList = [];
+const trainBtnEl = document.getElementById('btn-train');
+const resetBtnEl = document.getElementById('btn-reset');
+const predictBtnEl = document.getElementById('btn-predict');
+const numericResultEl = document.getElementById('numeric-result');
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Attach necessary event listeners
+  trainBtnEl.addEventListener('click', onClickOnTrain);
+  resetBtnEl.addEventListener('click', onClickOnReset);
+  predictBtnEl.addEventListener('click', onClickOnPredict);
+
   initializeSmoothieList();
-  renderSmoothieListToDOM(smoothieList, onClickOnStar);
+  renderSmoothieListToDOM(smoothieList);
   renderStarStatesFromSmoothieList(smoothieList);
 });
 
@@ -35,7 +47,7 @@ const renderSmoothieListToDOM = (smoothieList) => {
     });
 
     // Generate star list elements
-    const starLiItems = generateStarLiItems(smoothie.value, (value) => onClickOnStar(idx, value));
+    const starLiItems = generateStarLiItems((value) => onClickOnStar(idx, value));
     [...fruitLiItems, ...starLiItems].forEach((li) => ulEl.appendChild(li));
 
     // Select element to insert div elements
@@ -111,4 +123,14 @@ const generateStarLiItems = (onClickOnStar) => {
     liList.push(li);
   }
   return liList;
+}
+
+const onClickOnTrain = () => {
+  net.train(fruits, smoothieList);
+}
+
+const onClickOnPredict = () => {
+  const predictionInput = Array.from(document.getElementsByClassName('prediction-input')).map(el => el.value);
+  const result = net.predict(fruits, predictionInput);
+  numericResultEl.innerText = `${(result.score * 100).toFixed(0)}%`
 }
