@@ -1,17 +1,23 @@
 import { SmoothieNeuralNet } from './ai.js';
 
 // global const required for page configuration.
-const numberOfSmoothies = 10;
+const numberOfSmoothies = 20;
 const numberOfFruitsInPack = 4;
+const numberOfStars = 5;
 const fruits = ["🍎", "🍐", "🍋", "🍌", "🍉", "🍇", "🍓", "🥥", "🥒", "🍍"];
-const net = new SmoothieNeuralNet();
 let smoothieList = [];
-const trainBtnEl = document.getElementById('btn-train');
-const resetBtnEl = document.getElementById('btn-reset');
-const predictBtnEl = document.getElementById('btn-predict');
-const numericResultEl = document.getElementById('numeric-result');
+let trainBtnEl;
+let resetBtnEl;
+let predictBtnEl;
+let numericResultEl;
+const net = new SmoothieNeuralNet();
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Select necessary elements from DOM
+  trainBtnEl = document.getElementById('btn-train');
+  resetBtnEl = document.getElementById('btn-reset');
+  predictBtnEl = document.getElementById('btn-predict');
+  numericResultEl = document.getElementById('numeric-result');
 
   // Attach necessary event listeners
   trainBtnEl.addEventListener('click', onClickOnTrain);
@@ -22,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSmoothieListToDOM(smoothieList);
   renderStarStatesFromSmoothieList(smoothieList);
 });
+
 
 const initializeSmoothieList = () => {
   smoothieList = generateSmoothieList();
@@ -36,7 +43,7 @@ const renderSmoothieListToDOM = (smoothieList) => {
     smoothieContainerEl.appendChild(ulEl)
 
     // CSS
-    smoothieContainerEl.setAttribute("class", "col-12 text-center smoothie-list-item");
+    smoothieContainerEl.setAttribute("class", "col-6 text-center smoothie-list-item");
 
     // Generate fruit list elements
     const fruitLiItems = smoothie.fruits.map(fruit => {
@@ -74,6 +81,14 @@ const renderStarStatesFromSmoothieList = () => {
     stars.forEach(star => star.classList.remove('star--active'));
     stars[smoothieList[idx].value].classList.add('star--active');
   })
+}
+
+// Renders corrent star states based on values from smoothieList
+const renderResultStarsFromScore = (score) => {
+  const indexFromScore = Math.trunc(score / (100 / numberOfStars))
+  const resultStars = document.querySelectorAll('.result-stars .star');
+  resultStars.forEach(star => star.classList.remove('star--active'));
+  resultStars[indexFromScore].classList.add('star--active');
 }
 
 const getRandomFruit = () => {
@@ -132,5 +147,11 @@ const onClickOnTrain = () => {
 const onClickOnPredict = () => {
   const predictionInput = Array.from(document.getElementsByClassName('prediction-input')).map(el => el.value);
   const result = net.predict(fruits, predictionInput);
-  numericResultEl.innerText = `${(result.score * 100).toFixed(0)}%`
+  const scorePercentage = result.score * 100;
+
+  // Update numeric result element
+  numericResultEl.innerText = `${(scorePercentage).toFixed(0)}%`;
+
+  // Update result stars
+  renderResultStarsFromScore(scorePercentage);
 }

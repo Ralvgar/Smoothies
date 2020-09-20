@@ -1,12 +1,4 @@
-.col--orange {
-  background-color: #ff9f80;
-}
-
-.col--yellow {
-  background-color: #effab4;
-}
-
-.h1--color {
+body {
   color: #363636;
 }
 
@@ -18,8 +10,14 @@
   filter: grayscale(100%);
 }
 
-@media only screen and (max-width: 780px) {
-  .list-inline-item {
-    font-size: 2.1rem;
-  }
+.list-inline-item {
+  font-size: 1.8rem;
+}
+
+/* Util */
+.bg-orange {
+  background-color: #ff9f80;
+}
+.bg-yellow {
+  background-color: #effab4;
 }

@@ -16,41 +16,41 @@
 
   <header class="container-fluid">
     <div class="row">
-      <div class="col col--orange">
-        <h1 class="h1 h1--color text-center py-5 my-5">🍍 Smoothie Recommendation Engine 🍍</h1>
+      <div class="col bg-orange">
+        <h1 class="h1 text-center py-5 my-5">🍍 Smoothie Recommendation Engine 🍍</h1>
       </div>
     </div>
   </header>
 
-  <main class="container">
+  <section class="container">
     <div class="row">
       <div class="col">
-        <h3 class="text-center mt-5 mb-3 pt-5 h1 h1--color">Train</h3>
-        <p class="text-center h4 mb-4 h1--color">Rate the smoothies according to your taste</p>
+        <h3 class="text-center mt-5 mb-3 pt-5 h1">Train</h3>
+        <p class="text-center h4 mb-5">Rate the smoothies according to your taste</p>
       </div>
     </div>
     <div class="row" id="smoothie-list-container">
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col text-center mb-5">
+        <div class="col text-center my-5">
           <button class="btn btn-info btn-lg mx-2 px-5" type="button" name="button" id="btn-train">Train</button>
           <button class="btn btn-outline-secondary btn-lg mx-2 px-5" type="button" name="button"
             id="btn-reset">Reset</button>
         </div>
       </div>
     </div>
-  </main>
+  </section>
   <section class="container-fluid">
     <div class="row">
-      <div class="col col--yellow">
+      <div class="col bg-yellow">
         <h2 class="h1 text-center mt-5 mb-3 pt-5">Predict</h2>
         <p class="h4 text-center mb-4">Build a smoothie. The model will predict how much will you like it 🙌</p>
       </div>
     </div>
     <div class="row">
-      <div class="col col--yellow">
-        <ul class="list-inline text-center col--yellow">
+      <div class="col bg-yellow">
+        <ul class="list-inline text-center bg-yellow">
           <li class="mx-3 list-inline-item">
             <select class="prediction-input custom-select custom-select-lg">
               <option style="display:none"></option>
@@ -116,12 +116,12 @@
               aria-disabled="true">Predict</button>
           </li>
         </ul>
-        <ul class="list-inline text-center mb-0 mt-4 col--yellow">
-          <li class="h1 list-inline-item" data-value="1">⭐️</li>
-          <li class="h1 list-inline-item star--unchecked" data-value="2">⭐️</li>
-          <li class="h1 list-inline-item star--unchecked" data-value="3">⭐️</li>
-          <li class="h1 list-inline-item star--unchecked" data-value="4">⭐️</li>
-          <li class="h1 list-inline-item star--unchecked" data-value="5">⭐️</li>
+        <ul class="list-inline text-center mb-0 mt-4 bg-yellow result-stars">
+          <li class="h1 list-inline-item star star--active" data-value="1">⭐️</li>
+          <li class="h1 list-inline-item star" data-value="2">⭐️</li>
+          <li class="h1 list-inline-item star" data-value="3">⭐️</li>
+          <li class="h1 list-inline-item star" data-value="4">⭐️</li>
+          <li class="h1 list-inline-item star" data-value="5">⭐️</li>
         </ul>
         <div class="row">
           <div class="col">
@@ -135,10 +135,9 @@
   <footer class="container">
     <div class="row">
       <div class="col">
-        <p class="text-center mt-5 pt-5">Made with ❤️ by <a href="https://github.com/albertvazquezm"
-            target="_blank">Albert Vàzquez</a> using <a href="https://bulma.io/" target="_blank">bulma</a> and <a
+        <p class="text-center my-5 py-5">Made with ❤️ by <a href="https://github.com/Ralvgar" target="_blank">Roberto
+            Álvarez</a> & <a href="https://github.com/albertvazquezm" target="_blank">Albert Vàzquez</a> using <a
             href="https://github.com/BrainJS/brain.js" target="_blank">brain.js</a></p>
-        <p class="text-center mb-5 pb-5">Want to give <a href="#" target="_blank">feedback</a>?</p>
       </div>
     </div>
   </footer>
