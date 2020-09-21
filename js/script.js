@@ -15,13 +15,11 @@ const net = new SmoothieNeuralNet();
 document.addEventListener("DOMContentLoaded", () => {
   // Select necessary elements from DOM
   trainBtnEl = document.getElementById('btn-train');
-  resetBtnEl = document.getElementById('btn-reset');
   predictBtnEl = document.getElementById('btn-predict');
   numericResultEl = document.getElementById('numeric-result');
 
   // Attach necessary event listeners
   trainBtnEl.addEventListener('click', onClickOnTrain);
-  resetBtnEl.addEventListener('click', onClickOnReset);
   predictBtnEl.addEventListener('click', onClickOnPredict);
 
   initializeSmoothieList();
@@ -74,16 +72,6 @@ const onClickOnStar = (smoothieIdx, value) => {
 };
 
 // Renders corrent star states based on values from smoothieList
-const renderStarStatesFromSmoothieList = () => {
-  const smoothieElements = document.querySelectorAll('.smoothie-list-item');
-  smoothieElements.forEach((smoothieEl, idx) => {
-    const stars = smoothieEl.querySelectorAll('.star');
-    stars.forEach(star => star.classList.remove('star--active'));
-    stars[smoothieList[idx].value].classList.add('star--active');
-  })
-}
-
-// Renders corrent star states based on values from smoothieList
 const renderResultStarsFromScore = (score) => {
   const indexFromScore = Math.trunc(score / (100 / numberOfStars))
   const resultStars = document.querySelectorAll('.result-stars .star');
@@ -111,18 +99,6 @@ const getUniqueSmoothie = () => {
 const generateSmoothieList = () => new Array(numberOfSmoothies).fill(null).map(() => {
   return { fruits: getUniqueSmoothie(), value: 0 }
 });
-
-const onClickOnReset = () => {
-  // Reset model values
-  resetSmoothieListValues();
-  // Rerender stars based on current state
-  renderStarStatesFromSmoothieList();
-}
-
-// Reset all smoothie values to 0
-const resetSmoothieListValues = () => {
-  smoothieList = smoothieList.map(smoothie => ({ ...smoothie, value: 0 }));
-}
 
 // Generates star li items
 const generateStarLiItems = (onClickOnStar) => {
