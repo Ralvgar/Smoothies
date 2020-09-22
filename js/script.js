@@ -16,17 +16,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // Select necessary elements from DOM
   trainBtnEl = document.getElementById('btn-train');
   predictBtnEl = document.getElementById('btn-predict');
+  resetBtnEl = document.getElementById('btn-reset');
   numericResultEl = document.getElementById('numeric-result');
 
   // Attach necessary event listeners
   trainBtnEl.addEventListener('click', onClickOnTrain);
   predictBtnEl.addEventListener('click', onClickOnPredict);
+  resetBtnEl.addEventListener('click', onClickOnReset);
 
   initializeSmoothieList();
   renderSmoothieListToDOM(smoothieList);
   renderStarStatesFromSmoothieList(smoothieList);
 });
 
+const onClickOnReset = () => {
+  resetSmoothieListValues();
+}
+
+const resetSmoothieListValues = () => {
+  smoothieList = smoothieList.map((item) => {
+    return { ...item, value: 0 }
+  });
+}
 
 const initializeSmoothieList = () => {
   smoothieList = generateSmoothieList();
